@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aplikasi Perpustakaan Berbasis Web</title>
 
-  <link href="Assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="Assets/css/datepicker3.css" rel="stylesheet" />
-  <link href="Assets/css/bootstrap-table.css" rel="stylesheet" />
-  <link href="Assets/css/styles.css" rel="stylesheet" />
+  <link href="/Assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/Assets/css/datepicker3.css" rel="stylesheet" />
+  <link href="/Assets/css/bootstrap-table.css" rel="stylesheet" />
+  <link href="/Assets/css/styles.css" rel="stylesheet" />
 
   <!--[if lt IE 9]>
 			<script src="js/html5shiv.js"></script>
