@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-
+//load Models
 use App\Models\M_Admin;
 
 class Admin extends BaseController
@@ -13,15 +13,15 @@ class Admin extends BaseController
 
     public function dashboard()
     {
-        if (!session()->get('ses_id') || !session()->get('ses_user') || !session()->get('ses_level')) {
-            session()->setFlashdata('error', 'Silakan login terlebih dahulu');
+        if (session()->get('ses_id') == "" or session()->get('ses_user') == "" or session()->get('ses_level') == "") {
+            session()->setFlashdata('error', 'Silahkan loginterlebih dahulu');
             return redirect()->to(base_url('admin/login-admin'));
+        } else {
+            echo view('Backend/Template/header');
+            echo view('Backend/Template/sidebar');
+            echo view('Backend/Login/dashboard_admin');
+            echo view('Backend/Template/footer');
         }
-
-        echo view('Backend/Template/header');
-        echo view('Backend/Template/sidebar');
-        echo view('Backend/Login/dashboard_admin');
-        echo view('Backend/Template/footer');
     }
 
     public function autentikasi()
@@ -32,7 +32,7 @@ class Admin extends BaseController
 
         $cekUsername = $modelAdmin->getDataAdmin(['username_admin' => $username, 'is_delete_admin' => '0'])->getNumRows();
         if ($cekUsername == 0) {
-            session()->setFlashdata('Error', 'Username Tidak Ditemuka');
+            session()->setFlashdata('Error', 'Username Tidak Ditemukan');
             return redirect()->back();
         } else {
             $dataUser = $modelAdmin->getDataAdmin(['username_admin' => $username, 'is_delete_admin' => '0'])->getRowArray();
@@ -54,11 +54,10 @@ class Admin extends BaseController
             }
         }
     }
-
     public function logout()
     {
         session()->destroy();
-        session()->setFlashdata('success', 'Logout berhasil');
+        session()->setFlashdata('success', 'Berhasil Logout');
         return redirect()->to(base_url('admin/login-admin'));
     }
 }

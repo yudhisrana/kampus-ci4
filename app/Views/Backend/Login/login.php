@@ -75,30 +75,23 @@
             $(document).ready(function() {
                 swal("Success!", "<?php echo $_SESSION['success'] ?>", "success");
             });
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('error')) : ?>
+            $(document).ready(function() {
+                swal("Sorry!", "<?php echo $_SESSION['error'] ?>", "error");
+            });
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('warning')) : ?>
+            $(document).ready(function() {
+                swal("Warning!", "<?php echo $_SESSION['warning'] ?>", "warning");
+            });
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('info')) : ?>
+            $(document).ready(function() {
+                swal("Info!", "<?php echo $_SESSION['info'] ?>", "info");
+            });
+        <?php endif; ?>
     </script>
-<?php endif; ?>
-<?php if (session()->getFlashdata('error')) : ?>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            swal("Sorry!", "<?php echo $_SESSION['error'] ?>", "error");
-        });
-    </script>
-<?php endif; ?>
-<?php if (session()->getFlashdata('warning')) : ?>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            swal("Warning!", "<?php echo $_SESSION['warning'] ?>", "warning");
-        });
-    </script>
-<?php endif; ?>
-<?php if (session()->getFlashdata('info')) : ?>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            swal("Info!", "<?php echo $_SESSION['info'] ?>", "info");
-        });
-    </script>
-<?php endif; ?>
-</script>
 </body>
 
 </html>

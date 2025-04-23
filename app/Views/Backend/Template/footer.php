@@ -22,7 +22,6 @@
         $(window).on('resize', function() {
             if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
         })
-
         <?php if (session()->getFlashdata('success')) : ?>
             $(document).ready(function() {
                 swal("Success!", "<?php echo $_SESSION['success'] ?>", "success");
