@@ -7,38 +7,42 @@ use CodeIgniter\Model;
 class M_admin extends Model
 {
     protected $table = 'tbl_admin';
-    protected $primaryKey = 'id_admin';
-    protected $allowedFields = ['nama_admin', 'username_admin', 'password_admin', 'akses_level', 'is_delete_admin'];
 
-    public function getDataAdmin($where = [])
+    public function getDataAdmin($where = false)
     {
-        $builder = $this->db->table($this->table)
-            ->select('*')
-            ->orderBy('nama_admin', 'ASC');
-
-        if (!empty($where)) {
+        if ($where === false) {
+            $builder = $this->db->table($this->table);
+            $builder->select('*');
+            $builder->orderBy('nama_admin', 'ASC');
+            return $builder->get();
+        } else {
+            $builder = $this->db->table($this->table);
+            $builder->select('*');
             $builder->where($where);
+            $builder->orderBy('nama_admin', 'ASC');
+            return $builder->get();
         }
-
-        return $builder->get();
     }
 
     public function saveDataAdmin($data)
     {
-        return $this->db->table($this->table)->insert($data);
+        $builder = $this->db->table($this->table);
+        return $builder->insert($data);
     }
 
     public function updateDataAdmin($data, $where)
     {
-        return $this->db->table($this->table)->where($where)->update($data);
+        $builder = $this->db->table($this->table);
+        $builder->where($where);
+        return $builder->update($data);
     }
 
     public function autoNumber()
     {
-        return $this->db->table($this->table)
-            ->select("id_admin")
-            ->orderBy("id_admin", "DESC")
-            ->limit(1)
-            ->get();
+        $builder = $this->db->table($this->table);
+        $builder->select("id_admin");
+        $builder->orderBy("id_admin", "DESC");
+        $builder->limit(1);
+        return $builder->get();
     }
 }
